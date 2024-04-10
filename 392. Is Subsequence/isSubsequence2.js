@@ -11,10 +11,10 @@ var isSubsequence = function(s, t) {
     // Check edge cases
     if (s.length === 0) return true;
 
-    // Keep track of s
+    // Keep track of position in s
     let sIndex = 0;
 
-    // Iterate through t
+    // Iterate through string t
     for (let tChar of t) {
         if (s[sIndex] === tChar) {
             sIndex++; // Found a match, move to the next char
