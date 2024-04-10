@@ -4,7 +4,7 @@
  */
 // Questions - What is the range of values for n, the array length. What if there are multiple peaks of the same altitude? Confirm function signature is array of nums input and integer output
 // O(n) = O(n) for first iteration + O(n) for Math.max
-// Space-O(n) we are constructing an array of heights
+// Space-O(1) we are not storing an array
 var largestAltitude = function(gain) {
     // Check edge cases
     let maxAltitude = 0;
