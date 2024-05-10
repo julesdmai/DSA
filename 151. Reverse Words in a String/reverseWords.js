@@ -4,27 +4,15 @@
  */
 var reverseWords = function(s) {
     // Split s into array of words
+    // const arrayOfWords = s.trim().split(/\s+/); // regex method
+    // console.log(arrayOfWords);
+
     const arrayOfWords = s.split(' ');
     console.log(arrayOfWords);
-    
-    const arrayOfWordsTrimmed = [];
-    // Clean up the elements
-    arrayOfWords.forEach((word) => {
-        word.trimStart();
-        word.trimEnd();
-        if (word !== '') arrayOfWordsTrimmed.push(word);
-    });
-    console.log(arrayOfWordsTrimmed);
+    const filteredArray = arrayOfWords.filter((word) => word.length > 0); // Remove elements that are just white space
 
-    // Reverse
-    const reversed = arrayOfWordsTrimmed.reverse();
-    console.log(reversed);
-
-    // Return
-    const joined = reversed.join(' ');
-    console.log(joined);
-
-    return joined;
+    // Reverse, join, return
+    return filteredArray.reverse().join(' ');
 };
 
 // Testing for reverseWords()
@@ -34,5 +22,5 @@ var reverseWords = function(s) {
 // const s2 = "  hello world  ";
 // console.log(reverseWords(s2)); // Output: "world hello"
 
-const s3 = "a good   example";
-console.log(reverseWords(s3)); // Output: "example good a"
+// const s3 = "a good   example";
+// console.log(reverseWords(s3)); // Output: "example good a"
