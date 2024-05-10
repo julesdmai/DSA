@@ -41,11 +41,15 @@ var countBits = function(n) {
     // Function to count the number of '1's in the binary representation
     function countOnes(num) {
         let count = 0;
+        
+        // We are only counting the right-most bit or the least significant bit (LSB) on each iteration
         while (num !== 0) {
-            if (num % 2 === 1) count++
+            if (num % 2 === 1) count++ // LSB has been accounted for, now we need to right-shift the bits
+            num = Math.floor(num / 2); // This effectively right shifts the bits. We halve the decimal number and drop the fractional units
+
+            // The below are other options to right-shift the bits
             // num >> 1; // Bitwise Right Shift Operator
             // num = ~~(num / 2); // Double Bitwise NOT Operator - effectively truncates any fractional components of a number
-            num = Math.floor(num / 2);
         }
         return count;
     }
