@@ -11,6 +11,7 @@ var singleNumber = function(nums) {
         // Perform the XOR operation between the current `single` value and `num`
         // This will toggle the bits of `single` based on `num`
         XORResult = XORResult ^ num;
+        console.log(`After XOR operation with ${num}, current XORResult is ${XORResult}`);
     }
 
     // The final value of `XORResult` will be the number that doesn't have a duplicate
@@ -21,8 +22,8 @@ var singleNumber = function(nums) {
 // const array1 = [2, 2, 1];
 // console.log(singleNumber(array1)); // Output: 1
 
-// const array2 = [4, 1, 2, 1, 2];
-// console.log(singleNumber(array2)); // Output: 4
+const array2 = [4, 1, 2, 1, 2];
+console.log(singleNumber(array2)); // Output: 4
 
 // const array3 = [1];
 // console.log(singleNumber(array3)); // Output: 1
