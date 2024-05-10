@@ -11,9 +11,6 @@ var singleNumber = function(nums) {
         // Perform the XOR operation between the current `single` value and `num`
         // This will toggle the bits of `single` based on `num`
         XORResult = XORResult ^ num;
-
-        // Print the intermediate value for clarity (optional, for debugging purposes)
-        console.log(`After XOR with ${num}, XORResult is now: ${XORResult}`);
     }
 
     // The final value of `XORResult` will be the number that doesn't have a duplicate
