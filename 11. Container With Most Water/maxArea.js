@@ -34,4 +34,4 @@ var maxArea = function(height) {
 
 // // // testing
 // console.log(maxArea([1,8,6,2,5,4,8,3,7])) // Output: 49
-// console.log(maxArea([1, 1])) // Output: 49
+// console.log(maxArea([1, 1])) // Output: 1
