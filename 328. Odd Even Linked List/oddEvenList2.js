@@ -9,40 +9,23 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-
-// SpaceO(1) // O(n)
-// Single pass, cannot build new LL
-// Input: head of a LL
-// Output: head of a re-ordered LL
 var oddEvenList = function(head) {
-    if (!head) return null;
-    if (!head.next || !head.next.next) return head; // short-circuit early if LL only has 1 or 2 nodes
+    if (!head || !head.next) return head; // Edge case: no need to process if list is short
 
-    // Initialize variables
-    let travPtr = head.next;
-    let isOdd = false;
-    let evenPtr = head.next;
-    let oddPtr = head;
-    let evenHead = head.next;
+    let odd = head, even = head.next, evenHead = even;
 
-    // Traverse
-    while (travPtr.next !== null) {
-        travPtr = travPtr.next;
-        (isOdd === true) ? isOdd = false : isOdd = true;
-        if (isOdd === true) {
-            oddPtr.next = travPtr;
-            oddPtr = oddPtr.next;
-        } else if (isOdd === false) {
-            evenPtr.next = travPtr;
-            evenPtr = evenPtr.next;
-        }
+    // Look at next two spaces ahead and leapfrogs the odd and even pointers
+    while (even && even.next) {
+        odd.next = even.next;
+        odd = odd.next; // Move odd pointer to the next odd node
+        even.next = odd.next;
+        even = even.next; // Move even pointer to the next even node
     }
 
-    evenPtr.next = null; // Point tail to null to prevent cycle
-    oddPtr.next = evenHead; // Stitch together odd and even
+    odd.next = evenHead; // Concatenate even list after the odd list
     return head;
-
 };
+
 
 // // testing
 // Input: head = [1,2,3,4,5]
