@@ -3,10 +3,8 @@
  * @return {string}
  */
 var removeStars = function(s) {
-    if (!s) return null;
     
     // Initialize variables
-    let modifiedS = '';
     let arrayOfChars = [];
 
     // Iterate through chars
