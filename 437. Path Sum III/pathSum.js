@@ -22,6 +22,7 @@ function TreeNode(val, left, right) {
 // Strategy: Use BST DFS to collect arrays of all possible depths
 // Process each array to see how many end up equaling to the targetSum
 var pathSum = function(root, targetSum) {
+    const path = [];
     const paths = [];
 
     const dfs = (node, path, paths) => {
@@ -39,7 +40,7 @@ var pathSum = function(root, targetSum) {
         path.pop(); // Backtrack
     };
     
-    dfs(root, [], paths);
+    dfs(root, path, paths);
     console.log(paths); // Outputs all paths from root to leaf
     return paths;
 }
