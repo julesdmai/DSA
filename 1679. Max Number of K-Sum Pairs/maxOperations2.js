@@ -3,6 +3,8 @@
  * @param {number} k
  * @return {number}
  */
+
+// O(n) // spaceO(n)
 var maxOperations = function(nums, k) {
     let counter = 0;
     let numCounts = {};
