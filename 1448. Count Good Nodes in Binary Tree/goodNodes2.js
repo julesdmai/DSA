@@ -17,7 +17,7 @@
 // Strategy: DFS
 var goodNodes = function(root) {
     // Traverse the BST via DFS
-    const dfs = (node, maxSoFar = 0) => {
+    const dfs = (node, maxSoFar) => {
         if (!node) return 0;
 
         // Check if current node is a good node
@@ -40,7 +40,7 @@ var goodNodes = function(root) {
 /* ------------------------------- CODE REVIEW ------------------------------ */
 
 /** 
-Both solutions are correct and will work for counting good nodes in a binary tree. Solution 2 is more modular and functional, avoiding the use of global variables. Solution 1 is simpler and might be easier to understand at first glance but uses a global variable for counting.
+Both solutions are correct and will work for counting good nodes in a binary tree. Solution 2 is more modular and functional, avoiding the use of **global variables**. Solution 1 is simpler and might be easier to understand at first glance but uses a global variable for counting.
 
 If modularity and functional programming are priorities, Solution 2 is preferable. If simplicity and straightforward implementation are more important, Solution 1 might be the better choice.\
  */
