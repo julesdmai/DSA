@@ -39,6 +39,7 @@ const dfs = (node, currentSum, targetSum, prefixSum) => {
     count += dfs(node.right, currentSum, targetSum, prefixSum);
 
     // Backtrack: remove the c urrent sum from the prefix sum map
+    console.log(prefixSum);
     prefixSum[currentSum]--; 
 
     return count;
