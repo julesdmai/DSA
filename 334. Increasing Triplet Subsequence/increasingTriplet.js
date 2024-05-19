@@ -23,13 +23,7 @@ var increasingTriplet = function(nums) {
     return false; // No increasing triplet found
 };
 
-// Testing
-console.log(increasingTriplet([1, 2, 3, 4, 5])); // Output: true
-console.log(increasingTriplet([5, 4, 3, 2, 1])); // Output: false
-console.log(increasingTriplet([2, 1, 5, 0, 4, 6])); // Output: true
-
-
-// Testing
-nums = [1,2,3,4,5] // Output: true
-nums = [5,4,3,2,1] // Output: false
-nums = [2,1,5,0,4,6] // Output: true
+// // Testing
+// nums1 = [1,2,3,4,5] // Output: true
+// nums2 = [5,4,3,2,1] // Output: false
+// nums3 = [2,1,5,0,4,6] // Output: true
