@@ -10,25 +10,26 @@
 var longestOnes = function(nums, k) {
     
     // Initialize a window
-    let left = 0;
+    let left = 0; 
     maxLength = 0;
     zeroCount = 0;
 
-    for (right in nums) {
+    for (let right = 0; right < nums.length; right++) {
         if (nums[right] === 0) {
             zeroCount++
         }
-
+    
+        // If number of 0's exceed k, shrink the window from the left
         while (zeroCount > k) {
             if (nums[left] === 0) {
-                zeroCount--;
+                zeroCount--; // If the element at the left pointer is a 0, decrement
             }
-            left++;
+            left++; // Move the left pointer to the right, shrinking the window
         }
-
+    
+        // Update the maximum length of the window
         maxLength = Math.max(maxLength, right - left + 1);
     }
-
     return maxLength;
 };
 
