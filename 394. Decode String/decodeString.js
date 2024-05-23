@@ -26,6 +26,7 @@ var decodeString = function(s) {
             let num = numberStack.pop();
             let prevString = stringStack.pop();
 
+            // Construct the string from prev string, number to repeat, and current string
             currentString = prevString + currentString.repeat(num);
         } else {
             currentString += char;
