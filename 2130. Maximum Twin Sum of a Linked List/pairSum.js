@@ -9,6 +9,8 @@
  * @param {ListNode} head
  * @return {number}
  */
+
+// O(n) // spaceO(n)
 var pairSum = function(head) {
     const values = [];
     let maxSum = -Infinity;
