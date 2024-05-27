@@ -6,6 +6,7 @@
 // Input: array
 // Output: number representing index
 
+// O(n) // spaceO(1)
 var findPeakElement = function(nums) {
     // Iterate over elements
     for (let i = 0; i < nums.length; i++) {
