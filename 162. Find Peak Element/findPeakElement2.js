@@ -19,7 +19,7 @@ var findPeakElement = function(nums) {
 
         // If we are on a rising slope /// THEN the peak is to the right
         if (nums[mid] < nums[mid + 1]) {
-            left = mid;
+            left = mid + 1;
         }
 
         // If we are on a descending slope \\\ THEN the peak is to the left
