@@ -5,7 +5,7 @@
  */
 var uniquePaths = function(m, n) {
     
-    // Initialize the DP table
+    // Initialize the DP table where each cell represents unique paths
     const dp = Array(m).fill().map(() => Array(n).fill(1));
 
     /* m = 3, n = 7 -> dp = 2D table of 1's
@@ -21,8 +21,8 @@ var uniquePaths = function(m, n) {
     }
 
     /* After the first row iteration, the dp table will look like this
-    1 1 1 1 1 1 1
-    1 2 3 4 5 6 7
+    1 1 1 1 1 1 1 // There is only one way to access each cell in the first row and column
+    1 2 3 4 5 6 7 // Unique paths to a cell can be calculated by summing unique paths to top left left
     1 1 1 1 1 1 1
     */
 
