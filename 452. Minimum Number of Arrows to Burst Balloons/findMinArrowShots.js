@@ -3,27 +3,23 @@
  * @return {number}
  */
 var findMinArrowShots = function(points) {
-    if (points.length === 0)
+    if (points.length === 0) return 0;
 
-    points.sort((a,b) => a[0] - b[0]);
-    console.log(points);
-
-    let minShots = 0;
+    // Sort the points based on their end coordinates
+    points.sort((a,b) => a[1] - b[1]);
     
-    const backtracking = (arrayOfArrays, index) => {
-        const focusedArray = arrayOfArrays[index];
-        
-        // Check if focused array overlaps with any in front
-        if (focusedArray[0] < arrayOfArrays[index - 1]) {
+    let arrows = 1;
+    let end = points[0][1];
 
+    for (let i = 1; i < points.length; i++) {
+        // If the start of the current balloon is greater than the end of the previous one, we need a new arrow, the old arrow is no longer overlapping with the current balloon
+        if (points[i][0] > end) {
+            arrows++;
+            end = points[i][1];
         }
-        // Check if focused array overlaps with any behind
-
-        // Recursively call on the remainder of the array
-        return;
     }
 
-    
+    return arrows;
 
 };
 
