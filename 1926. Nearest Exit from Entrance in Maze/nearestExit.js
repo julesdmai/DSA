@@ -7,43 +7,42 @@
 // Strategy - BFS graph
 // O(n) // spaceO(n)
 var nearestExit = function(maze, entrance) {
-    let minSteps = 0;
-    let steps = 0;
+    const rows = maze.length;
+    const columns = maze[0].length;
+    const directions = [
+        [0, 1],  // right
+        [0, -1], // left
+        [1, 0],  // down
+        [-1, 0]  // up
+    ];
+    const queue = [[...entrance, 0]]; // Initialize with entrance [row, column, steps]
+    const visited = new Set();
+    visited.add(`${entrance[0]}-${entrance[1]}`);
 
-    const visited = [];
-    const queue = [];
+    while (queue.length) {
+        const [curRow, curColumn, steps] = queue.shift();
 
-    // Helper function to perform BFS on graph
-    const bfs = (maze, entrance, visited, queue, steps) => {
-        // Check for exit condition
-        if 
+        for (const [dr, dc] of directions) {
+            const newRow = curRow + dr;
+            const newColumn = curColumn + dc;
 
-        return;
-    }
-    
-    // Travel left
-    let left = [entrance[0], entrance[1] - 1];
-    // Check for wall and boundaries
-    if (maze[left] === '.' && entrance[1] - 1 >= 0) {
-        queue.push(left);
-    };
+            // Check boundaries
+            if (newRow >= 0 && newRow < rows && newColumn >= 0 && newColumn < columns) {
+                // Check if the cell is an empty cell and not visited
+                if (maze[newRow][newColumn] === '.' && !visited.has(`${newRow}-${newColumn}`)) {
+                    // Check exit condition
+                    if ((newRow === 0 || newRow === rows - 1 || newColumn === 0 || newColumn === columns - 1) && (newRow !== entrance[0] || newColumn !== entrance[1])) {
+                        return steps + 1;
+                    }
 
-    // Travel right
-    let right = [entrance[0], entrance[1] + 1];
-    if (maze[right] === '.' && entrance[1] + 1 <= maze[0].length) {
-        queue.push(right);
-    };
-
-    // Travel up
-    let up = [entrance[0] + 1, entrance[1]];
-    if (maze[up] === '.') {
-        queue.push(up);
-    }
-
-    // Travel down
-    let down = [entrance[0] - 1, entrance[1]];
-    if (maze[down] === '.') {
-        queue.push(down);
+                    // Record the cell has been visited and add to queue
+                    visited.add(`${newRow}-${newColumn}`);
+                    queue.push([newRow, newColumn, steps + 1]);
+                }
+            }
+        }
     }
 
+    // Finished BFS and never found cell that fits exit criteria
+    return -1;
 };
