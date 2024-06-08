@@ -1,26 +1,30 @@
 var maxScore = function(nums1, nums2, k) {
     let n = nums1.length;
-    let indices = Array.from({length: n}, (_, i) => i);
+    let pairs = [];
     
-    // Sort indices by nums2 values in ascending order
-    indices.sort((a, b) => nums2[a] - nums2[b]);
+    // Create pairs of (nums1[i], nums2[i])
+    for (let i = 0; i < n; i++) {
+        pairs.push([nums1[i], nums2[i]]);
+    }
     
-    // Max-heap for the largest values from nums1
-    let maxHeap = new MaxPriorityQueue({priority: x => x});
+    // Sort pairs by nums2 values in descending order
+    pairs.sort((a, b) => b[1] - a[1]);
+    
+    let minHeap = new MinPriorityQueue({priority: x => x});
     let sum = 0;
     let maxScore = 0;
     
     for (let i = 0; i < n; i++) {
-        let index = indices[i];
-        maxHeap.enqueue(nums1[index]);
-        sum += nums1[index];
+        let [num1, num2] = pairs[i];
+        minHeap.enqueue(num1);
+        sum += num1;
         
-        if (maxHeap.size() > k) {
-            sum -= maxHeap.dequeue().element;
+        if (minHeap.size() > k) {
+            sum -= minHeap.dequeue().element;
         }
         
-        if (maxHeap.size() == k) {
-            let currentScore = sum * nums2[index];
+        if (minHeap.size() == k) {
+            let currentScore = sum * num2;
             maxScore = Math.max(maxScore, currentScore);
         }
     }
