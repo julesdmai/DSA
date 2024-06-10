@@ -22,31 +22,30 @@ s consists of English letters, digits, symbols and spaces.
 // Output: number
 const longestSubstringWithoutRepeats = (s) => {
     // Edge case
-    if (s.length === 0) return 0;
-    if (s.length === 1) return 1;
+    if (s.length <= 1) return s.length; 
 
     let longestSubLength = 0; // Return this value
-    let currentSubLength = 0; // What we increase and decrease
-    let leftPointer = 0; // Use to iterate through s
+
+    // Initialize window
+    let leftPointer = 0;
     let rightPointer = 0;
-    const set = new Set(s[0]); // Use to store letters in currentSubstring
+    const set = new Set(); // Use to store letters in current window
 
-    while (rightPointer < s.length - 1) {
-        rightPointer++;
-        currentSubLength++;
+    // Itereate through string
+    while (rightPointer < s.length) {
 
-        // Move left pointer until we eliminate this character from the set
+        // If our window includes this current letter, move the left pointer until it is out of our window
         while (set.has(s[rightPointer])) {
-            // If we currently have this character in our substring, we shrink the window until the char has left the window
             set.delete(s[leftPointer]);
             leftPointer++;
-            currentSubLength--;
         }
 
-        set.add(s[rightPointer]); // Add this character to the set
+        // There is no longer this letter in our window, so we add it to the window
+        set.add(s[rightPointer]);
+        rightPointer++;
 
-        // Update leader
-        longestSubLength = Math.max(longestSubLength, currentSubLength);
+        // Update record
+        longestSubLength = Math.max(longestSubLength, rightPointer - leftPointer)
     }
 
     return longestSubLength;
@@ -54,8 +53,9 @@ const longestSubstringWithoutRepeats = (s) => {
 
 }
 
-// // testing
+// // // testing
 // console.log(longestSubstringWithoutRepeats('abcabcbb'));
 // console.log(longestSubstringWithoutRepeats('bbbbb'));
 // console.log(longestSubstringWithoutRepeats('pwwkew'));
 // console.log(longestSubstringWithoutRepeats(''));
+// console.log(longestSubstringWithoutRepeats('au'));
