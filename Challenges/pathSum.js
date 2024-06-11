@@ -51,24 +51,24 @@ const pathSum = (root, targetSum) => {
     return dfs(root, 0);
 }
 
-class TreeNode {
-    constructor(val, left = null, right = null) {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }
-}
 
+// // testing
+// class TreeNode {
+//     constructor(val, left = null, right = null) {
+//         this.val = val;
+//         this.left = left;
+//         this.right = right;
+//     }
+// }
 
-const root = new TreeNode(5);
-root.left = new TreeNode(4);
-root.right = new TreeNode(8);
-root.left.left = new TreeNode(11);
-root.right.left = new TreeNode(13);
-root.right.right = new TreeNode(4);
-root.left.left.left = new TreeNode(7);
-root.left.left.right = new TreeNode(2);
-root.right.right.right = new TreeNode(1);
+// const root = new TreeNode(5);
+// root.left = new TreeNode(4);
+// root.right = new TreeNode(8);
+// root.left.left = new TreeNode(11);
+// root.right.left = new TreeNode(13);
+// root.right.right = new TreeNode(4);
+// root.left.left.left = new TreeNode(7);
+// root.left.left.right = new TreeNode(2);
+// root.right.right.right = new TreeNode(1);
 
-// Checking if the binary tree has a path sum equal to 22
-console.log(pathSum(root, 22)); // Output: true
+// console.log(pathSum(root, 22)); // Output: true
