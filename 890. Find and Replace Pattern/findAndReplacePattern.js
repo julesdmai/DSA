@@ -13,9 +13,9 @@ const checkObjectDuplicateValues = (object) => {
     const values = Object.values(object);
     const set = new Set(values);
     if (values.length === set.size) {
-        return false; // There are no duplicates
+        return false; // There are no duplicates, no elements were removed
     } else {
-        return true;
+        return true; // There were duplicates, elements were removed to make the set
     }
 }
 
@@ -25,12 +25,13 @@ var findAndReplacePattern = function(words, pattern) {
 
     // Iterate through each word of words
     for (const word of words) {
-        const charMap = {}; // Store letter mapping
+        const charMap = {};
 
         // Itereate through each char of the pattern
         let i = 0;
         while (i < pattern.length) { // Implement as a while loop so we can break out
             let patternLetter = pattern[i];
+            console.log(patternLetter);
 
             // If this letter of the pattern has never been encountered,
             if (!charMap[patternLetter]) {
@@ -38,7 +39,7 @@ var findAndReplacePattern = function(words, pattern) {
                 charMap[patternLetter] = word[i]; // {'a': 'm' }
                 
                 // After adding to map, we need to check for repeats pointing to same letter
-                if (!checkObjectDuplicateValues(charMap)) break;
+                if (checkObjectDuplicateValues(charMap) === true) break;
             }
 
             // Validate that word[i] is what we expect
