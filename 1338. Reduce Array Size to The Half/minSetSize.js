@@ -6,26 +6,24 @@
 // Input: O(nlogn) // spaceO(n)
 // Ouptut: Number representing array length
 var minSetSize = function(arr) {
-    const numsMap = {};
+    const frequencyMap = {};
     for (const num of arr) {
-        numsMap[num] = (numsMap[num] || 0) + 1
+        frequencyMap[num] = (frequencyMap[num] || 0) + 1
     };
 
-    const entries = Object.entries(numsMap);
-    entries.sort((a, b) => b[1] - a[1]); // sort descending by values
+    const sortedFrequencies = Object.values(frequencyMap).sort((a, b) => b - a); // sort descending by values
 
     
     // Add to results until the numbers in results represent over half of the elements
-    let count = 0;
-    const results = [];
-
-    let i = 0;
-    while (count < arr.length / 2) {
-        count += entries[i][1];
-        results.push(entries[i][0]);
-        i++;
+    let removedCount = 0;
+    let setSize = 0;
+    for (const freq of sortedFrequencies) {
+        removedCount += freq;
+        setSize++;
+        if (removedCount >= arr.length / 2) break;
     }
-    return results.length;
+
+    return setSize;
 };
 
 // testing
