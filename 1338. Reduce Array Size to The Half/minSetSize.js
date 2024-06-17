@@ -14,6 +14,7 @@ var minSetSize = function(arr) {
     const entries = Object.entries(numsMap);
     entries.sort((a, b) => b[1] - a[1]); // sort descending by values
 
+    
     // Add to results until the numbers in results represent over half of the elements
     let count = 0;
     const results = [];
@@ -22,11 +23,12 @@ var minSetSize = function(arr) {
     while (count < arr.length / 2) {
         count += entries[i][1];
         results.push(entries[i][0]);
+        i++;
     }
-
     return results.length;
 };
 
 // testing
 // console.log(minSetSize([3,3,3,3,5,5,5,2,2,7]))
 // console.log(minSetSize([7,7,7,7,7,7]))
+// console.log(minSetSize([9,77,63,22,92,9,14,54,8,38,18,19,38,68,58,19]))
