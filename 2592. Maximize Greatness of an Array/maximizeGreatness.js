@@ -3,31 +3,26 @@
  * @return {number}
  */
 
-// Strategy: Sort ascending, take increasing cuts of smallest and greatest slices, compare slices
-// O(nlogn + n^2) // spaceO(n)
+// Strategy: Sort ascending, iterate through, keep a pointer at the first element until we satisfy condition, second pointer to iterate through the elements, essentially two pointers
+// O(nlogn + n) // spaceO(n)
 var maximizeGreatness = function(nums) {
-    // Sort nums ASCENDING
+    // Sort nums in ascending order
     nums.sort((a, b) => a - b);
 
-    // Initialize slice size
-    let sliceSize = 1;
+    let greatnessCount = 0;
+    let j = 0; // Comparison pointer
 
-    // Loop endlessly
-    while (true) {
-        // Take smallerNums slice
-        let smallerNums = nums.slice(0, sliceSize);
-
-        // Take biggerNums slice
-        let biggerNums = nums.slice(-sliceSize);
-
-        // Iterate through comparing slices
-        for (let i = 0; i < biggerNums.length; i++) {
-            // If biggerNums is ever smaller, then we break and we return slice size
-            if (biggerNums[i] <= smallerNums[i]) break; return sliceSize - 1; // have to backtrack by 1 size since this size failed
+    // Iterate through the sorted array
+    for (let i = 0; i < nums.length; i++) {
+        // Compare nums[j] with nums[i]
+        if (nums[j] < nums[i]) {
+            // Increment greatness count and move j to the next element
+            greatnessCount++;
+            j++;
         }
-        // At end of slice loop, we increment slice size
-        sliceSize++;
     }
+
+    return greatnessCount;
 };
 
 // testing
