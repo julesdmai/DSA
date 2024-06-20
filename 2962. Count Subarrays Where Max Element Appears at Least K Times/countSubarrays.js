@@ -4,11 +4,12 @@
  * @return {number}
  */
 
-// Strategy: Sliding window
+// Strategy: Brute force iteration
 // O(n^2) // spaceO(1)
 // Input: Array of numbers, and a frequencyCount
 // Output: Number representing count of subarrays
 var countSubarrays = function(nums, k) {
+    if (nums.length < k) return 0;
     let result = 0;
 
     // Calculate maxValue
