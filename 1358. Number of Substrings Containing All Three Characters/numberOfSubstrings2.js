@@ -12,43 +12,37 @@ var numberOfSubstrings = function(s) {
     // Edge case, if string s is too short, then we cannot find chars 'a', 'b', and 'c'
     if (s.length < 3) return 0;
 
-    // Initialize valid window
-    const chars = ['a', 'b', 'c'];
-    const indicesABC = [];
-    for (let char of chars) {
-        let idx = s.indexOf(char);
-        if (idx === -1) return 0; // short-circuit if all elements could not be found
-        indicesABC.push(idx);
-    }
-    let leftIdx = Math.min(...indicesABC);
-    let rightIdx = Math.max(...indicesABC);
-
+    let leftIdx = 0;
+    let rightIdx = 0;
     let counter = 0;
-    // Iterate through initialized valid window
-    while (leftIdx <= s.length - 3) {
-        let slice = s.slice(leftIdx, rightIdx + 1);
+    const count = {
+        'a': 0,
+        'b': 0,
+        'c': 0
+    }
+    
+    while (rightIdx < s.length) {
+        // Increment the count of the current character
+        count[s[rightIdx]]++;
 
-        // If this is a valid window
-        if (slice.includes('a') && slice.includes('b') && slice.includes('c')) {
-            counter += s.length - rightIdx; // Account for all of the substrings that include this valid window
-            leftIdx++; // Move the left pointer
-        }
+        // Check for valid window
+        while (count['a'] > 0 && count['b'] > 0 && count['c'] > 0) {
+            // Account for all substrings from rightIx to the end
+            counter += s.length - rightIdx;
 
-        // Else move the right pointer
-        else {
-            // If within bounds, move the right pointer
-            if (rightIdx < s.length - 1) rightIdx++
-            // Else moving will put out of bounds, so we return counter immediately
-            else break;
-        }
+            // Move the left pointer and decrement the count of that char
+            count[s[leftIdx]]--;
+            leftIdx++;
+        };
+
+        // Move the right pointer
+        rightIdx++;
     }
 
-    // End of loop, return counter
     return counter;
-    
 };
 
 // // testing
-console.log(numberOfSubstrings('abc'))
-console.log(numberOfSubstrings("abcabc"))
-console.log(numberOfSubstrings("aaacb"))
+// console.log(numberOfSubstrings('abc'))
+// console.log(numberOfSubstrings("abcabc"))
+// console.log(numberOfSubstrings("aaacb"))
