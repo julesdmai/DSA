@@ -4,7 +4,7 @@
  */
 
 
-// Strategy: Two pointers
+// Strategy: Two pointers with hashmap
 // O(n) // spaceO(1)
 // Input: String
 // Output: Number
