@@ -4,7 +4,7 @@
  */
 
 // Strategy: Helper function to check for isWonderful, take slices and check
-// O(n!) // spaceO(n)
+// O(n^3) // spaceO(n)
 // Input: String
 // Output: Number
 var wonderfulSubstrings = function(word) {
