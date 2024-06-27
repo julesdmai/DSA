@@ -33,6 +33,6 @@ var twoEditWords = function(queries, dictionary) {
     return results;
 };
 
-// testing
-console.log(twoEditWords(["word","note","ants","wood"], ["wood","joke","moat"]));
-console.log(twoEditWords(["yes"], ["not"]));
+// // testing
+// console.log(twoEditWords(["word","note","ants","wood"], ["wood","joke","moat"]));
+// console.log(twoEditWords(["yes"], ["not"]));
