@@ -10,38 +10,36 @@
  * @return {ListNode}
  */
 
-// Strategy: Iterate through LL creating array of values, iterate through array creating LL
+// Strategy: Create a dummy node, iterate through LL keeping track of runningTotal, add new nodes to dummy node, end loop return dummyNode.next
 // O(n) // spaceO(n)
 // Input: Head of LL
 // Output: Head of LL
 var mergeNodes = function(head) {
+    // Edge case
     if (!head || !head.next) return head;
     
-    // Create array of values
-    const nodeValues = [];
-    let current = head;
-    let total = 0;
+    // Initialize variables
+    let current = head.next // skipping the first zero
+    let dummyNode = new ListNode(0); // create a dummy node
+    let newTail = dummyNode // will be used to add to the tail
+    let runningTotal = 0;
 
-    while (current !== null) {
-        if (current.val !== 0) {
-            total += current.val;
-        } else {
-            nodeValues.push(total);
-            total = 0;
-        }
+    // Traverse the LL
+    while (current) {
+        runningTotal += current.val;
+        // Check for zero, create node, attach to tail, reset runningTotal
+        if (current.val === 0) {
+            newTail.next = new ListNode(runningTotal);
+            runningTotal = 0; // reset
+            newTail = newTail.next;
+        } 
+
+        // Advance pointer
         current = current.next;
-    }
+    } 
 
-    // Iterate through array forming new LL
-    let newHead = new ListNode(nodeValues[0]);
-    current = newHead;
-    for (let i = 1; i < nodeValues.length; i++) {
-        current.next = new ListNode(nodeValues[i]);
-        current = current.next;
-    }
-
-    // Skip the first 0
-    return newHead.next;
+    // Return head of new LL
+    return dummyNode.next;
 };
 
 
