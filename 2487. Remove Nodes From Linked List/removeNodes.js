@@ -10,8 +10,8 @@
  * @return {ListNode}
  */
 
-// Strategy: Iterate through LL creating monotonic stack, iterate through stack creating new LL
-// O(n) // spaceO(n)
+// Strategy: Iterate through LL creating monotonic stack of nodes, iterate through stack reassigning pointers
+// O(n) // spaceO(1)
 // Input: LL
 // Output: LL
 var removeNodes = function(head) {
@@ -21,33 +21,23 @@ var removeNodes = function(head) {
     // Create monotonic stack
     let current = head.next;
 
-    const stack = [head.val];
+    const stack = [head];
     while (current) {
-        while (current.val > stack[stack.length - 1]) {
+        while (stack.length > 0 && current.val > stack[stack.length - 1].val) {
             stack.pop()
         }
-        stack.push(current.val);
+        stack.push(current);
         current = current.next;
     }
 
-    const dummyNode = new ListNode();
-    let dummyTail = dummyNode;
-
-    // Iterate through stack creating new LL
+    // Iterate through stack reassigning pointers
     for (let i = 0; i < stack.length; i++) {
-        let newNode = new ListNode(stack[i]);
-        dummyTail.next = newNode;
-        dummyTail = dummyTail.next;
+        stack[i].next = stack[i + 1];
     }
+    stack[stack.length - 1].next = null; // Terminate the LL
 
-    return dummyNode.next;
+    return stack[0];
 };
-
-// Helper function - Definition for singly-linked list.
-function ListNode(val, next) {
-     this.val = (val===undefined ? 0 : val)
-     this.next = (next===undefined ? null : next)
-}
 
 // // testing
 // console.log(removeNodes([5,2,13,3,8]));
