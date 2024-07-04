@@ -8,7 +8,7 @@
 // Input: Array of numbers
 // Output: Number representing marked set size
 var maxNumOfMarkedIndices = function(nums) {
-    // Sort array
+    // Sort array ascending
     nums.sort((a, b) => a - b);
 
     // Initialize i and j pointers to beginning of array
