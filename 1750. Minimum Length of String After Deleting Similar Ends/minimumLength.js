@@ -9,29 +9,29 @@
 // Output: Number
 var minimumLength = function(s) {
     // Two pointers
-    let leftPointer = 0;
-    let rightPointer = s.length - 1;
+    let left = 0;
+    let right = s.length - 1;
 
-    while (leftPointer < rightPointer) {
-        let leftChar = s[leftPointer];
-        let rightChar = s[rightPointer];
+    while (left < right) {
+        let leftChar = s[left];
+        let rightChar = s[right];
 
         // If value of pointers 1 and 2 are equal then advance pointers
         if (leftChar === rightChar) {
-            // Advance left and right pointer to next non-same char
-            while (s[leftPointer] === leftChar) {
-                leftPointer++;
+            // Advance left and right pointer to next different char
+            while (s[left] === leftChar) {
+                left++;
             }
-            while (s[rightPointer] === rightChar) {
-                rightPointer--;
+            while (s[right] === rightChar) {
+                right--;
             }
         }
         else {
             break;
         }
     }
-    // Return distance between the two pointers or 0 at minimum
-    return rightPointer < leftPointer ? 0 : rightPointer + 1 - leftPointer;
+    // Return distance between the two pointers or 0 if the two pointers have crossed each other
+    return right < left ? 0 : right + 1 - left;
 };
 
 // // testing
