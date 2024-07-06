@@ -3,8 +3,8 @@
  * @return {number}
  */
 
-// Strategy: Sort array, initialize i and j pointers to the beginning of array, create a set for marked indices, iterate through array, check for criteria, return set size
-// O(nlogn) // spaceO(n)
+// Strategy: Sort array, initialize i & j pointers to the beginning and midpoint of array respectively, check for criteria, advance both pointers as needed, return counter
+// O(nlogn) // spaceO(1)
 // Input: Array of numbers
 // Output: Number representing marked set size
 var maxNumOfMarkedIndices = function(nums) {
@@ -12,35 +12,24 @@ var maxNumOfMarkedIndices = function(nums) {
     nums.sort((a, b) => a - b);
 
     // Initialize i and j pointers to beginning of array
+    const midpoint = Math.ceil(nums.length / 2);
     let i = 0;
-    let j = 1;
+    let j = midpoint;
+    let markedIndices = 0;
 
-    // Create a set for marked indices
-    const markedIndices = new Set();
-
-    // Itereate through array
-    while (j <= nums.length - 1) {
-        // Check for criteria
-        if (2 * nums[i] < nums[j]) {
-            // Push indices to set
-            markedIndices.add(i);
-            markedIndices.add(j);
-
-            // Re-assign pointers
-            while (markedIndices.has(i)) {
-                i++;
-            }
-            j = i + 1;
-            while (markedIndices.has(j)) {
-                j++;
-            }
-        } else {
+    // Itereate through array and check for criteria
+    while (j < nums.length) {
+        if (2 * nums[i] <= nums[j]) {
+            markedIndices += 2;
+            i++; // Re-assign pointers
             j++;
+        } else {
+            j++; // Increment to larger number in sorted array
         }
     }
     
-    // End loop, return set size
-    return markedIndices.size;
+    // End loop, return markedIndices
+    return markedIndices;
 };
 
 // // Testing
