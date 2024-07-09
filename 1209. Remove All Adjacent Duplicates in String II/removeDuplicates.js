@@ -4,39 +4,34 @@
  * @return {string}
  */
 
-// Strategy: Iterate through chars of s, push char onto stack, compare last k elements of stack, if fits criteria then pop k elements off, end loop join and return
+// Strategy: Stack with count
 // O(n) // spaceO(n)
 // Input: String, Number
 // Output: String
 var removeDuplicates = function(s, k) {
-    const stack = [];
+    const stack = []; // [['a', 1], ['b', 1], ...]
 
-    // Iterate through chars of s
     for (let char of s) {
-        stack.push(char);
+        if (stack.length && stack[stack.length - 1][0] === char) {
+            stack[stack.length - 1][1]++; // Encountered same letter, increment count for that letter
+        } else {
+            stack.push([char, 1]); // Encountered a new letter
+        }
 
-        // Compare last k elements of stack
-        if (stack.length < k) continue;
-        let topKStack = stack.slice(-k);
-        if (checkDuplicates(topKStack)) {
-            for (let i = 0; i < k; i++) {
-                stack.pop();
-            }
+        // If the count of the top element reached k, then we must pop it off
+        if (stack[stack.length - 1][1] === k) {
+            stack.pop();
         }
     }
-    // End loop, join and return
-    return stack.join('');
-};
 
-
-// Helper function to check for duplicates within array
-const checkDuplicates = (array) => {
-    const letter = array[0];
-    for (let char of array) {
-        if (char !== letter) return false;
+    // End loop build the resulting string
+    let result = '';
+    for (let [char, count] of stack) {
+        result += char.repeat(count);
     }
-    return true;
-}
+
+    return result;
+};
 
 // // testing
 // console.log(removeDuplicates('abcd', 2))
