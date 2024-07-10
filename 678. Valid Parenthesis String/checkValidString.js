@@ -3,35 +3,35 @@
  * @return {boolean}
  */
 
-// Strategy: Scan for balance left to right and right to left
+// Strategy: Low is minimum possible number of unmatched open parens, high is maximum possible number of unmatched open parens
 // O(n) // spaceO(1)
 // Input: String
 // Output: Boolean
 var checkValidString = function(s) {
-    let openParensCount = 0;
-    let starCount = 0;
-    for (let char of s) {
-        if (char === '(') {
-            openParensCount++;
+    let low = 0;
+    let high = 0;
+
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] === '(') {
+            low++;
+            high++;
+        } else if (s[i] === ')') {
+            low--;
+            high--;
+        } else { // s[i] === '*'
+            low--;
+            high++;
         }
-        else if (char === '*') {
-            starCount++;
+
+        if (high < 0) {
+            return false; // There are more ')' than '(' and '*' combined
         }
-        else if (char === ')') {
-            if (openParensCount > 0) {
-                openParensCount --;
-                continue;
-            }
-            if (starCount > 0) {
-                starCount--;
-                continue;
-            }
-            return false;
-        }
+
+        // To ensure low doesn't go below 0
+        low = Math.max(low, 0);
     }
-    // End loop, any remaining open parens can be closed by wildcard '*'
-    console.log({openParensCount}, {starCount});
-    return (openParensCount <= starCount);
+
+    return low === 0;
 };
 
 // // testing
@@ -39,3 +39,5 @@ var checkValidString = function(s) {
 // console.log(checkValidString('()'))
 // console.log(checkValidString('(*)'))
 // console.log(checkValidString('(*))'))
+// console.log(checkValidString('('))
+// console.log(checkValidString('(((((*(()((((*((**(((()()*)()()()*((((**)())*)*)))))))(())(()))())((*()()(((()((()*(())*(()**)()(())'))
