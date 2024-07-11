@@ -9,7 +9,7 @@
 // Input: String, Number
 // Output: String (char)
 var decodeAtIndex = function(s, k) {
-    // First pass to calculate size of the decoded string
+    // First pass to calculate final length of the decoded string
     let length = 0;
     let i = 0;
     while (length < k) {
@@ -25,7 +25,7 @@ var decodeAtIndex = function(s, k) {
     // Second pass to work backwards to find k-th index char
     for (let j = i - 1; j >= 0; j--) {
         let thisChar = s[j];
-        if (isDigit(thisChar)) { // this char is a number 
+        if (isDigit(thisChar)) {
             length = length / Number(thisChar);
             k %= length;
         } else {
