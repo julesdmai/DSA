@@ -4,36 +4,45 @@
  * @return {string}
  */
 
-// Strategy: Construct a new string, iterate through s, check if newString length >= k, if char then concat, if number then repeat
-// O(n) // spaceO(n)
+// Strategy: Two passes, first pass to calculate size of the the decoded string, second pass to work backwards to find the k-th index char
+// O(n) // spaceO(1)
 // Input: String, Number
 // Output: String (char)
 var decodeAtIndex = function(s, k) {
-    let newString = '';
-    for (let char of s) {
-        if (newString.length >= k) {
-            break; // Short circuit if possible
+    // First pass to calculate size of the decoded string
+    let length = 0;
+    let i = 0;
+    while (length < k) {
+        let thisChar = s[i];
+        if (isDigit(thisChar)) {
+            length *= Number(thisChar);
+        } else {
+            length++;
         }
-        // Check for char
-        const regexChar = /^[a-z]$/;
-        if (regexChar.test(char)) {
-            newString = newString.concat(char);
-        }
+        i++;
+    } // Exit the loop once we have sufficient length
 
-        // Check for digit
-        const regexDigit = /^[0-9]$/;
-        if (regexDigit.test(char)) {
-            let numberOfRepeat = Number(char);
-            newString = newString.repeat(numberOfRepeat);
+    // Second pass to work backwards to find k-th index char
+    for (let j = i - 1; j >= 0; j--) {
+        let thisChar = s[j];
+        if (isDigit(thisChar)) { // this char is a number 
+            length = length / Number(thisChar);
+            k %= length;
+        } else {
+            if (k === 0 || k === length) { // k = length, therefore we return 'o'
+                return thisChar;
+            }
+            length--;
         }
     }
-    // End loop, check for decodeAtIndex
-    if (newString.length >= k) {
-        return newString[k - 1];
-    } else {
-        return null;
-    }
+
+    return '';
 };
+
+// Helper function to check if char represents a digit
+const isDigit = (char) => {
+    return /^[0-9]$/.test(char);
+}
 
 // // testing
 // console.log(decodeAtIndex('leet2code3', 10));
