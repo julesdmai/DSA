@@ -4,7 +4,7 @@
  * @return {string}
  */
 
-// Strategy: Two passes, first pass to calculate size of the the decoded string, second pass to work backwards to find the k-th index char
+// Strategy: Two passes, first pass to calculate size of the the decoded string, second pass to work backwards to find the k-th index character
 // O(n) // spaceO(1)
 // Input: String, Number
 // Output: String (char)
