@@ -15,7 +15,7 @@ var calculate = function(s) {
         '/': (a, b) => Math.trunc(a / b) // Prompt - The integer division should truncate toward zero.
     }
 
-    const tokens = s.match(/\d+|\+|\-|\*|\//g);
+    const tokens = s.match(/\d+|\+|\-|\*|\//g); // Split into tokens of numbers and operators
 
     // 2 stacks and state of last operation
     const numbers = [];
