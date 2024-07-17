@@ -11,7 +11,7 @@
  */
 
 // Strategy: Iterate through LL using slow and fast pointers, collect nodes into two stacks, first stack until halfway point, second stack after halfway point, using a dummy node create a new re-ordered LL
-// O(n) // spaceO(1)
+// O(n) // spaceO(n)
 // Input: LL
 // Output: LL
 var reorderList = function(head) {
