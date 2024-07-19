@@ -3,46 +3,44 @@
  * @return {number}
  */
 
-// Strategy: Keep track of the state of greatestWPI, currentWPI, numTDays, NumNonTDays, iterate through processing the days calculating greatestWPI, reverse the list and do it again, return the longest
-// O(n) // spaceO(1)
+// Strategy: Transform array into 1's and -1's, store state of prefixSum, maxLength, and hashmap prefixSumMap to store first occurence of each prefixSum, check for prefixSum - 1 in map
+// O(n) // spaceO(n)
 // Input: Array of numbers
 // Output: Number
-var longestWPI = function(hours) {
-    // Create process function
-    // Keep track of greatest well-performing interval, current well-performing interval, number of tiring days, and number of non-tiring days
-    const calculateGreatestWPI = (array) => {
-        let greatestWPI = 0;
-        let currentWPI = 0;
-        let numTDays = 0;
-        let numNonTDays = 0;
+var longestWPI = function(hours) { 
+    const transformed = hours.map((hour) => hour > 8 ? 1 : -1);
+    let prefixSum = 0;
+    let maxLength = 0;
+    const prefixSumMap = new Map();
 
-        for (let i = 0; i < array.length; i++) {
-            if (array[i] > 8) {
-                numTDays++;
+    for (let i = 0; i < transformed.length; i++) {
+        // Update prefixSum
+        prefixSum += transformed[i];
+
+        // Check if current prefixSum is positive
+        if (prefixSum > 0) {
+            // If positive, the interval from the start to the current index is well-performing
+            maxLength = i + 1;
+        } else {
+            // Store the first occurence of this prefixSum in the map
+            if (!prefixSumMap.has(prefixSum)) {
+                prefixSumMap.set(prefixSum, i);
             }
 
-            else {
-                numNonTDays++;
-                if (numTDays === 0) numNonTDays = 0;
-            }
+            // Check if the target prefix sum exists in the map
+            let targetPrefixSum = prefixSum - 1;
 
-            if (numTDays - numNonTDays > 0) {
-                currentWPI = numTDays + numNonTDays
-                greatestWPI = Math.max(currentWPI, greatestWPI);
+            if (prefixSumMap.has(targetPrefixSum)) {
+                // Calculate the length of the interval
+                let intervalLength = i - prefixSumMap.get(targetPrefixSum);
+
+                // Update the max length if this interval is longer
+                maxLength = Math.max(maxLength, intervalLength);
             }
         }
-        return greatestWPI;
     }
 
-    // Invoke process function on input hours
-    const greatestWPI_1 = calculateGreatestWPI(hours);
-
-    // Reverse the list and do it again
-    hours.reverse();
-    const greatestWPI_2 = calculateGreatestWPI(hours);
-
-    // Return the max
-    return Math.max(greatestWPI_1, greatestWPI_2);
+    return maxLength;
 };
 
 // testing
