@@ -41,8 +41,6 @@ var longestWPI = function(hours) {
 
             // Update the maxLength if this interval is longer
             maxLength = Math.max(maxLength, intervalLength);
-            
-            maxLength = Math.max(maxLength, i - prevIndex);
         }
     }
 
