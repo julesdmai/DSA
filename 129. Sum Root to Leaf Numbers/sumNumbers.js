@@ -38,7 +38,6 @@ var sumNumbers = function(root) {
     }
     process(root, []);
 
-    // console.log(rootToLeafNumbers);
     return rootToLeafNumbers.reduce((acc, curr) => acc + curr, 0);
 };
 
