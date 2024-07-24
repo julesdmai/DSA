@@ -32,7 +32,7 @@ var reverseOddLevels = function(root) {
                 let node = queue.shift();
                 if (node.left) queue.push(node.left);
                 if (node.right) queue.push(node.right);
-                nodesThisLevel.push(node);
+                nodesThisLevel.push(node.val);
             }
 
             // End floor
@@ -47,33 +47,50 @@ var reverseOddLevels = function(root) {
     }
 
     // Second pass to create tree from array of array of nodes
-    const constructTree = (nodesByLevel) => {
-        const root = nodesByLevel[0][0];
-        const queue = [root];
-        let level = 1;
-
-        while (level < nodesByLevel.length) {
-            let levelSize = nodesByLevel[level].length;
-
-            for (let i = 0; i < levelSize; i++) {
-                let parent = queue.shift();
-                let leftChild = nodesByLevel[level][2 * i];
-                let rightChild = nodesByLevel[level][2 * i + 1];
-
-                parent.left = leftChild;
-                parent.right = rightChild;
-
-                queue.push(leftChild);
-                queue.push(rightChild);
-            }
-            level++;
+    function constructTree(levels) {
+        if (levels.length === 0 || levels[0].length === 0) {
+            return null;
         }
-
+    
+        const root = new TreeNode(levels[0][0]);
+        const queue = [{ node: root, pos: 0 }];  // Queue to keep track of nodes and their positions
+    
+        for (let i = 1; i < levels.length; i++) {
+            const level = levels[i];
+            const newQueue = [];  // New queue for the next level
+    
+            for (let j = 0; j < level.length; j++) {
+                const parentIndex = Math.floor(j / 2);
+                const parentNode = queue[parentIndex].node;
+    
+                if (level[j] !== null) {
+                    const newNode = new TreeNode(level[j]);
+    
+                    if (j % 2 === 0) {
+                        parentNode.left = newNode;
+                    } else {
+                        parentNode.right = newNode;
+                    }
+    
+                    newQueue.push({ node: newNode, pos: j });
+                }
+            }
+    
+            queue.splice(0, queue.length, ...newQueue);  // Update the queue with nodes of the current level
+        }
+    
         return root;
     }
     return constructTree(nodesByLevel);
 
 };
+
+// Helper function - defintion of a binary tree node
+function TreeNode(val) {
+    this.val = val;
+    this.left = null;
+    this.right = null;
+}
 
 // // Testing
 // console.log(reverseOddLevels([2,3,5,8,13,21,34]))
