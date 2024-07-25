@@ -19,25 +19,22 @@ var levelOrder = function(root) {
     if (!root) return [];
 
     // Use a queue to manage nodes visited
-    const nodesVisited = [];
-    const orderLevelTraversal = (queue) => {
-        while (queue.length) {
-            let thisFloor = [];
-            let levelSize = queue.length;
-            for (let i = 0; i < levelSize; i++) {
-                let node = queue.shift();
-                if (node.left) queue.push(node.left);
-                if (node.right) queue.push(node.right);
-                thisFloor.push(node.val);
-            }
-            // End floor
-            nodesVisited.push(thisFloor);
-        }
-        return nodesVisited;
-    }
+    const result = [];
+    const queue = [root];
 
-    // Invoke and return
-    return orderLevelTraversal([root]);
+    while (queue.length) {
+        let level = [];
+        let levelSize = queue.length;
+        for (let i = 0; i < levelSize; i++) {
+            let node = queue.shift();
+            if (node.left) queue.push(node.left);
+            if (node.right) queue.push(node.right);
+            level.push(node.val);
+        }
+        // End floor
+        result.push(level);
+    }
+    return result;
 };
 
 // // testing
