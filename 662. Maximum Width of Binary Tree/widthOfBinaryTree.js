@@ -11,52 +11,43 @@
  * @return {number}
  */
 
-// Strategy: Use BFS - level-order traversal to find, calculate level width and compare to maxWidth
-// O(n^2) // spaceO(n)
+// Strategy: Use level-order traversal and store pairs [node, position] in a queue to process nodes, normalize positions to help prevent overflow, calculate level width 
+// O(n) // spaceO(n)
 // Input: Root
 // Output: Number
 var widthOfBinaryTree = function(root) {
     if (!root) return 0;
 
-    // BFS - level-order traversal
-    const queue = [root];
+    const queue = [[root, 0]] // Store [node, position] in queue
     let maxWidth = 0;
 
     while (queue.length) {
-        // Calculate width of current level by trimming null values
-        let levelWidth = calculateWidth(queue);
-        maxWidth = Math.max(levelWidth, maxWidth);
+        const levelSize = queue.length;
+        let minPosition = queue[0][1] // Used for position normalization
+        let first = null; // Used to calculate level width
+        let last = null;
 
-        // Add children to queue
-        let levelSize = queue.length;
         for (let i = 0; i < levelSize; i++) {
-            let node = queue.shift();
-            if (node) {
-                queue.push(node.left);
-                queue.push(node.right);
-            } else {
-                queue.push(null);
-                queue.push(null);
-            }
+            const [node, position] = queue.shift();
+
+            // Normalize position of node within current level of binary tree
+            let normPosition = position - minPosition; // Helps prevent int overflow for large indices for sparse trees
+
+            if (i === 0) first = normPosition;
+            if (i === levelSize - 1) last = normPosition;
+
+            if (node.left) queue.push([node.left, normPosition * 2])
+            if (node.right) queue.push([node.right, normPosition * 2 + 1])
         }
+
+        // End level, update max width
+        const levelWidth = last - first + 1;
+        maxWidth = Math.max(levelWidth, maxWidth);
     }
-    
-    // End loop
+
     return maxWidth;
 };
 
-// Helper function to calculate level width by trimming pre-post trailing null values
-const calculateWidth = (array) => {
-    let start = 0;
-    let end = array.length - 1;
-    while (start <= end && array[start] === null) {
-        start++;
-    }
-    while (end >= start && array[end] === null) {
-        end--;
-    }
-    return end - start + 1;
-}
 
 // // testing
 // console.log(widthOfBinaryTree([1,3,2,5,3,null,9])) // 4
