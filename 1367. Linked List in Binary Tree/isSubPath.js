@@ -19,28 +19,31 @@
  * @return {boolean}
  */
 
-// Strategy: Check for LL head and BST node match, search children nodes for more of the LL, if LL is completely found, then return true, otherwise end of loop return false
-// O(n) // spaceO(n)
+// Strategy: Use DFS
+// O(n) // spaceO(1)
 // Input: LL, BST
 // Output: Boolean
 var isSubPath = function(head, root) {
-    // Traverse both LL and BST
-    const traverseBoth = (head, node) => {
-        if (!head) return true;
+    if (!root) return false;
 
-        // LL and BST do match
+    // Check if linked list head matches subtree root node
+    const checkPath = (head, node) => {
+        if (!head) return true; // All nodes in LL are matched
+        if (!node) return false; // Reached end of branch without matching
+
         if (head.val === node.val) {
-            if (node.left) return traverseBoth(head.next, node.left);
-            if (node.right) return traverseBoth(head.next, node.right);
+            if (checkPath(head.next, node.left)) return true;
+            if (checkPath(head.next, node.right)) return true;
         }
-
-        // LL and BST do not match
-        else if (head.val !== node.val) {
-            if (node.left) return traverseBoth(head, node.left);
-            if (node.right) return traverseBoth(head, node.right);
-        }
+        return false;
     }
-    return traverseBoth(head, root);
+    
+    // Traverse the tree and check for subpath starting at each node
+    if (checkPath(head, root)) return true; // This current node is the start
+    if (isSubPath(head, root.left)) return true; // Check left child
+    if (isSubPath(head, root.right)) return true; // Check right child
+
+    return false;
 };
 
 // // Testing
