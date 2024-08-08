@@ -19,14 +19,15 @@ var deepestLeavesSum = function(root) {
     const queue = [root];
     const prevLevel = [];
     while (queue.length) {
+        let levelSize = queue.length;
         // Process nodes from the queue, adding children nodes to the queue
-        for (let i = 0; i < queue.length; i++) {
+        for (let i = 0; i < levelSize; i++) {
             let node = queue.shift();
             if (node.left) queue.push(node.left);
             if (node.right) queue.push(node.right);
             prevLevel.push(node);
         }
-        // If queue has no length, then prevLevel is the deepest nodes 
+        // End loop, if queue has no length, then prevLevel has the deepest nodes 
         if (queue.length === 0) {
             break;
         } else { // Deeper nodes exist, so we reset current history

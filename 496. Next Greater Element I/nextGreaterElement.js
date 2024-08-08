@@ -22,7 +22,6 @@ var nextGreaterElement = function(nums1, nums2) {
 
         stack.push(i);
     }
-
     // Could use map(?)
     const ans = [];
     for (let i = 0; i < nums1.length; i++) {
