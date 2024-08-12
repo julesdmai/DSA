@@ -3,7 +3,7 @@
  * @return {number}
  */
 
-// Strategy: Use a stack, push open parens as encountered, pop when encounter closing parens, calculate current depth and max depth
+// Strategy: Use stack, iterate over s, push open parens and pop from stack as encountered, calculate current depth and compare to max depth
 // O(n) // spaceO(n)
 // Input: String
 // Output: Number representing max depth
