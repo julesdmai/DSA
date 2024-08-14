@@ -10,6 +10,11 @@
  * @param {TreeNode} root
  * @return {number}
  */
+
+// Strategy: 
+// O() // spaceO()
+// Input: Root
+// Output: Number
 var averageOfSubtree = function(root) {
     
 };
