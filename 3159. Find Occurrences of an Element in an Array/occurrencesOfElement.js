@@ -7,7 +7,7 @@
 
 // Strategy: 
 // O() // spaceO()
-// Input: Array of numbers, array of array of numbers, number
+// Input: Array of numbers, array of numbers (queries), number
 // Output: Array of numbers
 var occurrencesOfElement = function(nums, queries, x) {
     
