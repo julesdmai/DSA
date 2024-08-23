@@ -10,7 +10,7 @@
  * @param {TreeNode} root
  * @return {number}
  */
-// Strategy: Helper function to addGrandchildren, traverse through BST looking for even-valued nodes
+// Strategy: Helper function to add grandchildren node values, traverse through BST looking for even-valued nodes using depth-first search
 // O(n) // spaceO(n)
 // Input: Root
 // Output: Number
@@ -27,7 +27,7 @@ var sumEvenGrandparent = function(root) {
         }
     }
 
-    const targetedValues = [];
+    const targetedValues = []; // Keep track of values to be summed // Can modify to spaceO(1)
 
     // Recursive traversal of BST
     const process = (node, array) => {
