@@ -26,10 +26,9 @@ var sumEvenGrandparent = function(root) {
         }
 
         // Recursively call to traverse
-        process(node.left, node, parent);
+        process(node.left, node, parent); // node -> parent -> grandparent ---> node.left -> node -> parent
         process(node.right, node, parent);
     }
-
     process(root, null, null);
 
     return sum;
