@@ -10,7 +10,7 @@
  * @param {TreeNode} root
  * @return {number}
  */
-// Strategy: Traverse through BST looking for even-valued nodes using depth-first search
+// Strategy: Traverse through BST searching for even-valued nodes using depth-first search
 // O(n) // spaceO(1)
 // Input: Root
 // Output: Number
