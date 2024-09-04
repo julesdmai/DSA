@@ -4,7 +4,7 @@
  */
 
 // Strategy: 
-// O() // spaceO()
+// O(n) // spaceO(n)
 // Input: String
 // Output: String
 var arrangeWords = function(text) {
