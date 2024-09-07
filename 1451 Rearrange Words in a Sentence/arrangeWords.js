@@ -16,5 +16,5 @@ var arrangeWords = function(text) {
 
     // Capitalize first word
 
-    // Join and return
+    // Join and return string
 };
