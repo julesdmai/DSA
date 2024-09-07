@@ -14,7 +14,7 @@ var arrangeWords = function(text) {
 
     // Re-order by increasing length
 
-    // Capitalie first word
+    // Capitalize first word
 
     // Join and return
 };
