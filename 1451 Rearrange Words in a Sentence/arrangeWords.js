@@ -3,18 +3,16 @@
  * @return {string}
  */
 
-// Strategy: Lowercase first word, split into elements in array, order by increasing length, capitalize first word, join and return
+// Strategy: Lowercase first word, split into elements in array, order by increasing length, capitalize first word, join and return, note strings are immutable
 // O(nlogn) // spaceO(n)
 // Input: String
 // Output: String
 var arrangeWords = function(text) {
-    if (!text.length) return text;
+    if (!text.length) return 'no text';
 
     // Lowercase first word
     const lowerCaseFirstLetter = text[0].toLowerCase();
-    console.log(lowerCaseFirstLetter); // 'k'
     const newText = lowerCaseFirstLetter + text.slice(1);
-    console.log(newText);
 
     // Split words into array
     const tokens = newText.split(' ');
