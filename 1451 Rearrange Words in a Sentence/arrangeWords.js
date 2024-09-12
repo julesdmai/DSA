@@ -3,7 +3,7 @@
  * @return {string}
  */
 
-// Strategy: Lowercase first word, split into elements in array, order by increasing length, capitalize first word, join and return, note strings are immutable
+// Strategy: Lowercase first word, split into elements in array, order by increasing length, capitalize first word, join and return, NOTE strings are immutable!
 // O(nlogn) // spaceO(n)
 // Input: String
 // Output: String
