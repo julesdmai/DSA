@@ -4,7 +4,7 @@
  */
 
 // Strategy: Lowercase first word, split into elements in array, order by increasing length, capitalize first word, join and return, NOTE strings are immutable!
-// O(nlogn) // spaceO(n)
+// O(nlogn) for sorting // spaceO(n)
 // Input: String
 // Output: String
 var arrangeWords = function(text) {
