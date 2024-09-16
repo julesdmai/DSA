@@ -25,7 +25,8 @@ var arrangeWords = function(text) {
     tokens[0] = capitalFirstLetter + tokens[0].slice(1);
 
     // Join element (words) and return string
-    return tokens.join(' ');
+    const results = tokens.join(' ');
+    return results;
 };
 
 // // testing
