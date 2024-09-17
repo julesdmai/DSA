@@ -14,10 +14,10 @@ var arrangeWords = function(text) {
     const lowerCaseFirstLetter = text[0].toLowerCase();
     const newText = lowerCaseFirstLetter + text.slice(1);
 
-    // Split words into array
+    // Split words into separate elements in array
     const tokens = newText.split(' ');
 
-    // Re-order by increasing length
+    // Re-order words by increasing length
     tokens.sort((a, b) => a.length - b.length);
 
     // Capitalize first letter
