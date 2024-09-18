@@ -10,7 +10,7 @@
 var arrangeWords = function(text) {
     if (!text.length) return 'no text';
 
-    // Lowercase first word
+    // Lowercase first letter
     const lowerCaseFirstLetter = text[0].toLowerCase();
     const newText = lowerCaseFirstLetter + text.slice(1);
 
