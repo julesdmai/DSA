@@ -12,7 +12,7 @@ var arrangeWords = function(text) {
     const lowerCaseFirstLetter = text[0].toLowerCase();
     const newText = lowerCaseFirstLetter + text.slice(1);
 
-    // Split words into separate elements in array and re-order by increasing length
+    // Split words into elements in array and re-order by increasing length
     const tokens = newText.split(' ');
     tokens.sort((a, b) => a.length - b.length);
 
