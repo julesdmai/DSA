@@ -8,7 +8,7 @@
 // Input: String
 // Output: String
 var arrangeWords = function(text) {
-    // Copy input text to new string, replacing first char with lowercase
+    // Create new text replacing first char with lowercase
     const lowerCaseFirstLetter = text[0].toLowerCase();
     const newText = lowerCaseFirstLetter + text.slice(1);
 
