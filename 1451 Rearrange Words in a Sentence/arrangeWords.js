@@ -8,7 +8,7 @@
 // Input: String
 // Output: String
 var arrangeWords = function(text) {
-    // Create new copy of text replacing first char with lowercase letter
+    // Create new copy of text replacing first char with lowercase
     const lowerCaseFirstLetter = text[0].toLowerCase();
     const newText = lowerCaseFirstLetter + text.slice(1);
 
@@ -16,7 +16,7 @@ var arrangeWords = function(text) {
     const tokens = newText.split(' ');
     tokens.sort((a, b) => a.length - b.length);
 
-    // Copy string and replace first letter of first word with upper case letter
+    // Copy string and replace first letter of first word with upper case
     const capitalFirstLetter = tokens[0][0].toUpperCase();
     tokens[0] = capitalFirstLetter + tokens[0].slice(1);
 
