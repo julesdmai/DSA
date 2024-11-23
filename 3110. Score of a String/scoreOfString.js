@@ -11,9 +11,9 @@ var scoreOfString = function(s) {
 
     let counter = 0;
     for (let i = 0; i < s.length - 1; i++) { // stop loop one iteration before
-        let firstChar = i;
-        let secondChar = i + 1;
-        let neighborDiff = Math.abs(s.charCodeAt(firstChar) - s.charCodeAt(secondChar));
+        let firstIdx = i;
+        let neighborIdx = i + 1;
+        let neighborDiff = Math.abs(s.charCodeAt(firstIdx) - s.charCodeAt(neighborIdx));
         counter += neighborDiff;
     }
     return counter;
