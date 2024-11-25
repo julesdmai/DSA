@@ -5,7 +5,7 @@
 // Input: String
 // Output: A single number representing the accumulated value
 // O(n) // spaceO(1)
-// Strategy: Reduce method to accumulate a single value // OR counter and loop
+// Strategy: Reduce method to accumulate a single value // OR counter variable and loop through string
 var scoreOfString = function(s) {
     if (!s) return;
 
