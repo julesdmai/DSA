@@ -15,7 +15,6 @@ var countConsistentStrings = function(allowed, words) {
         let idx = 0;
         for (const letter of word) {
             if (!allowed.includes(letter)) {
-                console.log(`breaking on ${letter}`)
                 break;
             }
             else idx++;
