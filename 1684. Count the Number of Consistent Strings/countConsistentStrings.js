@@ -8,7 +8,8 @@
 // O(n) // spaceO(1)
 // Strategy: Iterate through words, iterate through chars, increment counter if satisfies requirement
 var countConsistentStrings = function(allowed, words) {
-    if (!allowed || !words) return 0;
+    if (!allowed || !words) return 0; // Edge case
+
     let numConsistentWords = 0;
 
     for (const word of words) {
