@@ -10,7 +10,7 @@
 var countConsistentStrings = function(allowed, words) {
     if (!allowed || !words) return 0; // Account for edge case
 
-    let numConsistentWords = 0; // Counter we will be incrementing
+    let numConsistentWords = 0; // Incrementing counter
 
     for (const word of words) {
         let idx = 0;
@@ -20,7 +20,7 @@ var countConsistentStrings = function(allowed, words) {
             }
             else idx++;
         }
-        if (idx === word.length) numConsistentWords++; // Completed the end of the loop
+        if (idx === word.length) numConsistentWords++; // Completed loop, increment
     }
 
     return numConsistentWords;
